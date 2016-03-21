@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) UIWindow *window;
+
 /**
  Replaces the web view with a fresh one, erasing all history. Also updates the URL field and toolbar buttons appropriately.
  */

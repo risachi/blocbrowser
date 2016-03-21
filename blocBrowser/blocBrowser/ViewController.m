@@ -75,6 +75,15 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    UIAlertController *hello = [UIAlertController alertControllerWithTitle:@"hello" message:@"Hello world" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    
+    [hello addAction:defaultAction];
+    
+    [self presentViewController:hello animated:TRUE completion:nil];
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
