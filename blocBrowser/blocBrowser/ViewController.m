@@ -193,4 +193,9 @@
     }
 }
 
+- (void) floatingToolbar:(AwesomeFloatingToolbar *)toolbar didPinchToolbar:(CGFloat)scale {
+    CGAffineTransform newTransform = CGAffineTransformMakeScale(scale, scale);
+    toolbar.transform = newTransform;
+}
+
 @end
