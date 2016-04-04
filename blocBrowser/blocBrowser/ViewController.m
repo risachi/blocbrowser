@@ -60,8 +60,11 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.awesomeToolbar.frame = CGRectMake(20, 100, 280, 60);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
@@ -73,9 +76,8 @@
     //assign the frames
     self.textField.frame = CGRectMake(0, 0, width, itemHeight); //CGRectMake(howFarFromTheLeft, howFromTheTop, howWide, howTall)
     self.webView.frame = CGRectMake(0, CGRectGetMaxY(self.textField.frame), width, browserHeight);
-    
-    self.awesomeToolbar.frame = CGRectMake(20, 100, 280, 60);
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - UITextFieldDelegate
 
@@ -194,8 +196,14 @@
 }
 
 - (void) floatingToolbar:(AwesomeFloatingToolbar *)toolbar didPinchToolbar:(CGFloat)scale {
-    CGAffineTransform newTransform = CGAffineTransformMakeScale(scale, scale);
-    toolbar.transform = newTransform;
+    CGPoint startingPoint = toolbar.frame.origin;
+    CGPoint newPoint = CGPointMake(startingPoint.x + scale, startingPoint.y + scale);
+    
+    CGRect potentialNewFrame = CGRectMake(newPoint.x, newPoint.y, toolbar.frame.size.width * scale, toolbar.frame.size.height * scale);
+    
+    if (CGRectContainsRect(self.view.bounds, potentialNewFrame)) {
+        toolbar.frame = potentialNewFrame;
+    }
 }
 
 @end

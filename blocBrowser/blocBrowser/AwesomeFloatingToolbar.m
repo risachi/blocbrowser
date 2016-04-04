@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
 @property (nonatomic) int labelIndex;
 
+//@property (nonatomic, assign) NSUInteger rotationSequence;
+
 @end
 
 
